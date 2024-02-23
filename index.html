@@ -69,52 +69,52 @@
         s0.initCam()
 
         const sketch1 = () => {
-            src(s0).pixelate(1000).contrast(1).colorama(0.08).out(o0)
+            src(s0).scale(1, -1).pixelate(1000).contrast(1).colorama(0.08).out(o0)
         }
 
 
         const sketch2 = () => {
-            src(s0).contrast(0.25).colorama(1).out(o0)
+            src(s0).scale(1, -1).contrast(0.25).colorama(1).out(o0)
         }
 
       
 
         const sketch3 = () => {
-            src(s0).invert().contrast(0.5).out(o0)
+            src(s0).scale(1, -1).invert().contrast(0.5).out(o0)
         }
 
         const sketch4 = () => {
-            src(s0).blend(s0).contrast(0.7).colorama(0.08).out(o0)
+            src(s0).scale(1, -1).blend(s0).contrast(0.7).colorama(0.08).out(o0)
 
         }
 
         const sketch5 = () => {
-            src(s0).osc(1,100,1).posterize(30).hue(15).out(o0)
+            src(s0).scale(1, -1).osc(1,100,1).posterize(30).hue(15).out(o0)
 
         }
 
         const sketch6 = () => {
-            src(s0).invert().hue(1,1,1).saturate(8).out(o0)
+            src(s0).scale(1, -1).invert().hue(1,1,1).saturate(8).out(o0)
 
         }
 
         const sketch7 = () => {
-            src(s0).hue(1,1,1).saturate(10).color(0.2,1,0.1).contrast(0.8).out(o0)
+            src(s0).scale(1, -1).hue(1,1,1).saturate(10).color(0.2,1,0.1).contrast(0.8).out(o0)
 
         }
 
         const sketch8 = () => {
-            src(s0).hue(5,5,5).saturate(1).color(0.2,-1,0.33).contrast(0.8).out(o0)
+            src(s0).scale(1, -1).hue(5,5,5).saturate(1).color(0.2,-1,0.33).contrast(0.8).out(o0)
 
         }
 
         const sketch9 = () => {
-            src(s0).hue(5,5,5).saturate(4).color(-1,-1,1).contrast(1).out(o0)
+            src(s0).scale(1, -1).hue(5,5,5).saturate(4).color(-1,-1,1).contrast(1).out(o0)
 
         }
 
         const sketch10 = () => {
-            src(s0).hue(2,2,1).saturate(1).color(-6,-2,-1).contrast(0.6).out(o0)
+            src(s0).scale(1, -1).hue(2,2,1).saturate(1).color(-6,-2,-1).contrast(0.6).out(o0)
 
         }
 
