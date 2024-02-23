@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VIEWZ</title>
+    <title>OLIVIA s beautiful page</title>
     <script src="./lib/hydra-synth.js"></script>
     <script src="./lib/gyro-v2.js"></script>
     <styLe>
@@ -36,26 +36,13 @@
             background: none;
             cursor: pointer;
             background-size: cover;
-            background-position: center; 
-            background-image: url("cover.png"); 
-        }
-
-        #screenshot-button {
-            position: absolute;
-            left: 20px;
-            bottom: 20px;
+            /* background-position: center; */
+            /* background-image: url("cover.png"); */
         }
     </styLe>
 </head>
 
 <body>
-    <canvas id="hydra-canvas"></canvas>
-    <button id="gyro-button">touch to begin</button>
-    <button id="screenshot-button" onclick="screencap()"> take screeshot!
-
-
-
-    </button>
     <script type="module">
     
         const hydraCanvas = document.getElementById('hydra-canvas')
@@ -65,74 +52,49 @@
 
         gyro.requestPermissions(document.getElementById('gyro-button'))
 
-
-        s0.initCam()
-
         const sketch1 = () => {
-            src(s0).pixelate(1000).contrast(1).colorama(0.08).out(o0)
+            osc(20, 0.1, 0.5)
+                .modulate(noise(4, 0.4))
+                .out()
         }
 
 
         const sketch2 = () => {
-            src(s0).contrast(0.25).colorama(1).out(o0)
+            osc(20, 0.1, 0.5)
+                .modulate(noise(2, 0.4)
+                    .scrollY(() => gyro.beta/3)
+                    .scrollX(() => gyro.gamma/3)
+                )
+                .hue(() => gyro.alpha)
+                .out()
         }
 
       
 
         const sketch3 = () => {
-            src(s0).invert().contrast(0.5).out(o0)
+           src(o0)
+                .modulate(noise(2), 0.004)
+                .out()
         }
 
-        const sketch4 = () => {
-            src(s0).blend(s0).contrast(0.7).colorama(0.08).out(o0)
-
-        }
-
-        const sketch5 = () => {
-            src(s0).osc(1,100,1).posterize(30).hue(15).out(o0)
-
-        }
-
-        const sketch6 = () => {
-            src(s0).invert().hue(1,1,1).saturate(8).out(o0)
-
-        }
-
-        const sketch7 = () => {
-            src(s0).hue(1,1,1).saturate(10).color(0.2,1,0.1).contrast(0.8).out(o0)
-
-        }
-
-        const sketch8 = () => {
-            src(s0).hue(5,5,5).saturate(1).color(0.2,-1,0.33).contrast(0.8).out(o0)
-
-        }
-
-        const sketch9 = () => {
-            src(s0).hue(5,5,5).saturate(4).color(-1,-1,1).contrast(1).out(o0)
-
-        }
-
-        const sketch10 = () => {
-            src(s0).hue(2,2,1).saturate(1).color(-6,-2,-1).contrast(0.6).out(o0)
-
-        }
-
+        
 
         // array of available sketches
-        const mySketches = [sketch1, sketch2, sketch3, sketch4,sketch5,sketch6,sketch7,sketch8,sketch9,sketch10]
+        const mySketches = [sketch1, sketch2, sketch3]
         let currentSketch = 0
 
         mySketches[0]()
 
         // listen to events
-        hydraCanvas.addEventListener('pointerdown', () => {
+        window.addEventListener('pointerdown', () => {
             currentSketch++
             if(currentSketch >= mySketches.length) currentSketch = 0
             mySketches[currentSketch]()
         })
+
     </script>
-   
+    <canvas id="hydra-canvas"></canvas>
+    <button id="gyro-button">touch to begin</button>
 </body>
 
 </html>
